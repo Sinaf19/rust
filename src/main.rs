@@ -5,7 +5,9 @@ use rand::Rng;
 
 fn main() {
 
-    guessing_game();
+    // guessing_game();
+    another_function(45);
+
 }
 
 fn guessing_game() {
@@ -43,4 +45,8 @@ fn guessing_game() {
             }
         }
     }
+}
+
+fn another_function(x: i32) {
+    println!("The value of x is: {x}");
 }
