@@ -47,6 +47,7 @@ fn guessing_game() {
     }
 }
 
-fn another_function(x: i32) {
+fn another_function(x: i32) -> String {
     println!("The value of x is: {x}");
+    "Hello".to_string()
 }
