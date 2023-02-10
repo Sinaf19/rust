@@ -1,8 +1,6 @@
+use crate::library::matrix::Matrix;
 
-use std::cmp::Ordering;
-use std::io;
-use rand::Rng;
-use std::str::FromStr;
+pub mod library;
 
 fn main() {
 
@@ -10,12 +8,21 @@ fn main() {
     // another_function(45);
     // break_continue_loop();
     // for_loop();
-    convert_f_to_c();
+    // convert_f_to_c();
+
+let test;
+    let mut test1 = Matrix {rows: 3, cols: 3, data: vec![vec![1.0, 2.0, 3.0], vec![4.0, 5.0, 6.0], vec![7.0, 8.0, 9.0]]};
+    let test2 = Matrix {rows: 3, cols: 3, data: vec![vec![2.2, 2.3, 2.4], vec![2.5, 2.6, 2.7], vec![2.8, 2.9, 2.0]]};
+
+    test = test1.multiply(&test2);
+
+    println!("{:?}", test.data);
+
 
 }
 
 
-fn guessing_game() {
+/*fn guessing_game() {
 
     println!("Guess a number!");
 
@@ -52,14 +59,10 @@ fn guessing_game() {
     }
 }
 
-
-
 fn another_function(x: i32) -> String {
     println!("The value of x is: {x}");
     "Hello".to_string()
 }
-
-
 
 fn break_continue_loop() {
 
@@ -92,8 +95,6 @@ fn break_continue_loop() {
     println!("End count = {count}");
 }
 
-
-
 fn for_loop() {
 
     let a = [10, 20, 30, 40, 50];
@@ -112,12 +113,12 @@ fn convert_f_to_c() {
 
     println!("Converter F -> C and C -> F\n");
 
-    println!("Convert C to F ? (C = Celsius, F = Fahrenheit)");
+    println!("Which unit do you want to convert ? (C, F)");
 
 
     let mut unit = String::new();
-    let celsius: String = String::from("Celsius");
-    let fahrenheit: String = String::from("Fahrenheit");
+    let celsius: String = String::from("C");
+    let fahrenheit: String = String::from("F");
 
     io::stdin()
         .read_line(&mut unit)
@@ -140,19 +141,19 @@ fn convert_f_to_c() {
 
 
     if unit.eq(&celsius) {
-        let mut value_in_F: f64 = 0.;
-        value_in_F = (to_convert as f64 * (9. / 5.)) + 32.;
-        println!("{} degrees Celsius is equal to {:.2} degrees Fahrenheit", to_convert, value_in_F);
+        let mut value_in_f: f64 = 0.;
+        value_in_f = (to_convert as f64 * (9. / 5.)) + 32.;
+        println!("{} degrees Celsius is equal to {:.2} degrees Fahrenheit", to_convert, value_in_f);
     }
 
     if unit.eq(&fahrenheit) {
-        let mut value_in_C: f64 = 0.;
-        value_in_C = (to_convert as f64 - 32.) * (5. / 9.);
-        println!("{} degrees Fahrenheit is equal to {:.2} degrees Celsius", to_convert, value_in_C);
+        let mut value_in_c: f64 = 0.;
+        value_in_c = (to_convert as f64 - 32.) * (5. / 9.);
+        println!("{} degrees Fahrenheit is equal to {:.2} degrees Celsius", to_convert, value_in_c);
     }
 
 }
-
+*/
 
 
 
