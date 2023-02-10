@@ -18,7 +18,6 @@ let test;
 
     println!("{:?}", test.data);
 
-
 }
 
 
