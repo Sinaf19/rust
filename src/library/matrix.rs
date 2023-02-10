@@ -62,4 +62,15 @@ impl Matrix {
            return result;
     }
 
+    pub fn transpose(&mut self) -> Matrix {
+        let mut result = Matrix::zero(self.cols, self.rows);
+
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                result.data[i][j] = self.data[j][i];
+            }
+        }
+        return result;
+    }
+
 }
