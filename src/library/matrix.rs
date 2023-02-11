@@ -30,7 +30,7 @@ impl Matrix {
 
     pub fn add(&mut self, other: &Matrix) -> Matrix {
         if self.rows != other.rows || self.cols != other.cols {
-            panic!("Attempting to add a matrix with a matrix of different dimension")
+            panic!("Attempting to add with a matrix of different dimension")
         }
 
         let mut result = Matrix::zero(self.rows, other.cols);
@@ -68,6 +68,18 @@ impl Matrix {
         for i in 0..self.rows {
             for j in 0..self.cols {
                 result.data[j][i] = self.data[i][j];
+            }
+        }
+        return result;
+    }
+
+    // need to check the "real" name of this algebraic operation
+    pub fn dot_product(&mut self, f: &dyn Fn(f64) -> f64) -> Matrix {
+        let mut result = Matrix::zero(self.rows, self.cols);
+
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                result.data[i][j] = f(self.data[i][j]);
             }
         }
         return result;

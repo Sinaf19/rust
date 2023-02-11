@@ -12,4 +12,9 @@ let test;
 
     println!("{:#?}", test.data);
 
+    // need to implement the Mul<_> trait
+    // test = test1 * 2;
+
+
+
 }
