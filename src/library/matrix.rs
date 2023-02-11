@@ -74,7 +74,8 @@ impl Matrix {
     }
 
     // need to check the "real" name of this algebraic operation
-    pub fn dot_product(&mut self, f: &dyn Fn(f64) -> f64) -> Matrix {
+    // used to apply a function to every element of the matrix
+    pub fn dot_product(&mut self, f: fn(f64) -> f64) -> Matrix {
         let mut result = Matrix::zero(self.rows, self.cols);
 
         for i in 0..self.rows {
