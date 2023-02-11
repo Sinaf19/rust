@@ -29,6 +29,14 @@ impl Matrix {
     return result;
     }
 
+    pub fn from(data: Vec<Vec<f64>>) -> Matrix {
+        Matrix {
+            rows: data.len(),
+            cols: data[0].len(),
+            data,
+        }
+    }
+
     pub fn add(&mut self, other: &Matrix) -> Matrix {
         if self.rows != other.rows || self.cols != other.cols {
             panic!("Attempting to add with a matrix of different dimension")
@@ -74,17 +82,15 @@ impl Matrix {
         return result;
     }
 
-    // need to check the "real" name of this algebraic operation
-    // used to apply a function to every element of the matrix
-    pub fn dot_product(&mut self, f: fn(f64) -> f64) -> Matrix {
-        let mut result = Matrix::zero(self.rows, self.cols);
-
-        for i in 0..self.rows {
-            for j in 0..self.cols {
-                result.data[i][j] = f(self.data[i][j]);
-            }
-        }
-        return result;
+    // application of methods very powerful in Rust -> need to learn more about them
+    pub fn map(&mut self, function: &dyn Fn(f64) -> f64) -> Matrix {
+        Matrix::from(
+            (self.data)
+                .clone()
+                .into_iter()
+                .map(|row| row.into_iter().map(|value| function(value)).collect())
+                .collect(),
+        )
     }
 
 }

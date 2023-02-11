@@ -12,7 +12,7 @@ let mut test;
 
     println!("{:#?}", test.data);
 
-    test = test2.dot_product(ReLU);
+    test = test2.map(&ReLU);
 
     println!("{:#?}", test.data);
 }
