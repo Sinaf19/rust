@@ -1,6 +1,7 @@
 use std::ops::Mul;
 use rand::{Rng, thread_rng};
 
+#[derive(Clone)]
 pub struct Matrix {
     pub rows: usize,
     pub cols: usize,
