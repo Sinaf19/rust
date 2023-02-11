@@ -67,7 +67,7 @@ impl Matrix {
 
         for i in 0..self.rows {
             for j in 0..self.cols {
-                result.data[i][j] = self.data[j][i];
+                result.data[j][i] = self.data[i][j];
             }
         }
         return result;
