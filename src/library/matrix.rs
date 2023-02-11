@@ -1,3 +1,4 @@
+use std::ops::Mul;
 use rand::{Rng, thread_rng};
 
 pub struct Matrix {
@@ -86,4 +87,19 @@ impl Matrix {
         return result;
     }
 
+}
+
+impl Mul<f64> for Matrix {
+    type Output = Self;
+
+    fn mul(mut self, rhs: f64) -> Matrix {
+        let mut result = Matrix::zero(self.rows, self.cols);
+
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                result.data[i][j] = self.data[i][j] * rhs;
+            }
+        }
+        return result;
+    }
 }
