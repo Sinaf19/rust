@@ -15,15 +15,12 @@ let mut test;
     test = test2.dot_product(ReLU);
 
     println!("{:#?}", test.data);
-
-
-
 }
 
 fn ReLU(value: f64) -> f64 {
-    if value > 0.0 {
-        return value;
+    return if value > 0.0 {
+        value
     } else {
-        return 0.0;
+        0.0
     }
 }
