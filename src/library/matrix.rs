@@ -38,6 +38,26 @@ impl Matrix {
         }
     }
 
+    pub fn shape(& mut self) -> (usize,usize) {
+        return (self.rows, self.cols);
+    }
+
+    pub fn column(& mut self, col: usize) -> Vec<f64> {
+        let mut result = vec![0.0; self.rows];
+        for i in 0..self.rows {
+            result.push(self.data[i][col]);
+        }
+        return result;
+    }
+
+    pub fn row(& mut self, row: usize) -> Vec<f64> {
+        let mut result = vec![0.0; self.cols];
+        for i in 0..self.cols {
+            result.push(self.data[row][i]);
+        }
+        return result;
+    }
+
     pub fn add(&mut self, other: &Matrix) -> Matrix {
         if self.rows != other.rows || self.cols != other.cols {
             panic!("Attempting to add with a matrix of different dimension")

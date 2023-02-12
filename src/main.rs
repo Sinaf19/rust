@@ -1,5 +1,5 @@
+use std::f64::consts::E;
 use crate::library::matrix::Matrix;
-
 
 pub mod library;
 
@@ -11,13 +11,17 @@ let mut test;
 
     test = test1.transpose();
 
-    println!("{:#?}", test.data);
+    // println!("{:#?}", test.data);
 
     test = test2.map(&ReLU);
 
-    println!("{:#?}", test.data);
+    println!("{:?}", test.data);
 
+    test = softmax(test);
 
+    println!("{:?}", test.data);
+
+    // let result = softmax(&[2.0, 3.0, 1.0, -0.5]);
 }
 
 fn ReLU(value: f64) -> f64 {
@@ -26,4 +30,29 @@ fn ReLU(value: f64) -> f64 {
     } else {
         0.0
     }
+}
+
+fn softmax (mut m:  Matrix) -> Matrix {
+    m = m.map(&|x| x.exp());
+
+    let mut v = vec![0.0; m.cols];
+    for i in 0..m.rows {
+        let cm = m.column(i);
+        let sum = cm.iter().fold(0.0, |sum, val| sum + val);
+        v[i] = sum;
+    }
+
+    // apply the division to each value in the matrix, the sum must correspond to the col !
+    let mut matrix = vec![vec![0.0; m.cols]; m.rows];
+    for i in 0..m.rows {
+        for j in 0..m.cols {
+            m.data[i][j] = m.data[i][j] / v[j];
+        }
+/*            let row = m.row(i);
+            // should give the sum for each column and not each rows :(
+            let result = row.iter().map(|x| x / v[i]).collect();
+            matrix[i] = result;*/
+    }
+
+    return m;
 }
