@@ -1,5 +1,6 @@
 use crate::library::matrix::Matrix;
 
+
 pub mod library;
 
 fn main() {
@@ -15,6 +16,8 @@ let mut test;
     test = test2.map(&ReLU);
 
     println!("{:#?}", test.data);
+
+
 }
 
 fn ReLU(value: f64) -> f64 {
