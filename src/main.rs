@@ -42,16 +42,10 @@ fn softmax (mut m:  Matrix) -> Matrix {
         v[i] = sum;
     }
 
-    // apply the division to each value in the matrix, the sum must correspond to the col !
-    let mut matrix = vec![vec![0.0; m.cols]; m.rows];
     for i in 0..m.rows {
         for j in 0..m.cols {
             m.data[i][j] = m.data[i][j] / v[j];
         }
-/*            let row = m.row(i);
-            // should give the sum for each column and not each rows :(
-            let result = row.iter().map(|x| x / v[i]).collect();
-            matrix[i] = result;*/
     }
 
     return m;

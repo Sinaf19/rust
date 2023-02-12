@@ -1,5 +1,6 @@
 use crate::library::matrix::Matrix;
 use crate::library::activation::Activation;
+use crate::softmax;
 
 pub struct Network<'a> {
     layers: Vec<usize>,
@@ -35,15 +36,23 @@ impl Network<'_> {
         }
 
         let mut current = Matrix::from(vec![input]).transpose();
-
-        for i in 0..self.layers.len() - 1 {
+        self.data = vec![current.clone()];
+        for i in 0..self.layers.len() - 2 {
             current = self.weights[i]
                 .multiply(&current)
                 .add(&self.biases[i])
-                .map(self.activation.function)
+                .map(self.activation.function);
+            self.data.push(current.clone());
         }
 
-        return vec![];
+
+
+        // activation functions are used until the last layer where we need the softmax function
+        // to be applied to the matrix to have a vector of output based on probability to
+        // each class the input could correspond to
+        current = softmax(current.clone());
+
+        return current.data[0].to_owned();
     }
 
 }
